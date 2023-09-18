@@ -4,20 +4,26 @@ import java.lang.AssertionError;
 public class MyLinkedList <T> {
 	
 	class Node {
-		// FIXME add member variables
+		T data;
+		Node next;
 		
 		Node(T data) { // Node inherits T from MyLinkedList
-			// FIXME
+			this.data = data;
+			this.next = null;
 		}
 	}
 
-	// FIXME add member variables
+	private Node head;
+	private Node tail;
+	private int size;
 
 	/**
 	 * Construct an MyLinkedList.
 	 */
 	public MyLinkedList() {
-		// FIXME
+		this.head = null;
+		this.tail = null;
+		this.size = 0;
 	}
 
 	/**
@@ -26,7 +32,7 @@ public class MyLinkedList <T> {
 	 * @return The number of elements in the MyLinkedList.
 	 */
 	public int size() {
-		return 0; // FIXME
+		return this.size;
 	}
 
 	/**
@@ -35,7 +41,17 @@ public class MyLinkedList <T> {
 	 * @param element The element to add.
 	 */
 	public void add(T element) {
-		// FIXME
+		Node newNode = new Node(element);
+		if (this.size == 0){
+			head = newNode;
+			tail = newNode;
+		}
+		else {
+			Node last = tail;
+			last.next = newNode;
+			this.tail = newNode;
+		}
+		this.size++;
 	}
 
 	/**
@@ -47,7 +63,11 @@ public class MyLinkedList <T> {
 	 * @return The element at the specified index.
 	 */
 	public T get(int index) {
-		return null; // FIXME
+		Node currNode = this.head;
+		for (int i = 0;i<index;i++){
+			currNode = currNode.next;
+		}
+		return currNode.data;
 	}
 
 	/**
@@ -58,7 +78,29 @@ public class MyLinkedList <T> {
 	 * @param index The index to remove.
 	 */
 	public void remove(int index) {
-		// FIXME
+		if (this.size == 1){
+			this.head = null;
+			this.tail = null;
+		}
+		else if (index == 0){
+			this.head = this.head.next;
+		}
+		else if (index == this.size-1){
+			Node currNode = this.head;
+			for (int i = 0; i < index-1;i++){
+				currNode = currNode.next;
+			}
+			currNode.next = null;
+			this.tail = currNode;
+		}
+		else {
+			Node currNode = this.head;
+			for (int i = 0; i < index-1;i++){
+				currNode = currNode.next;
+			}
+			currNode.next = currNode.next.next;
+		}
+		this.size--;
 	}
 
 	/**
