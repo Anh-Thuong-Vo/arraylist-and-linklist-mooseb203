@@ -2,7 +2,8 @@ import java.lang.AssertionError;
 
 public class MyArrayList<T> {
 
-	// FIXME add member variables
+	private Object[] arrayData;
+	private int size;
 
 	/**
 	 * Construct an MyArrayList with a given initial length.
@@ -10,7 +11,8 @@ public class MyArrayList<T> {
 	 * @param initialLength The initial length of the array.
 	 */
 	public MyArrayList (int initialLength) { // we do not need to redeclare the <T> type in the constructor
-		// FIXME
+		this.arrayData = new Object[initialLength];
+		this.size = 0;
 	}
 
 	/**
@@ -19,7 +21,7 @@ public class MyArrayList<T> {
 	 * @return The number of elements in the MyArrayList.
 	 */
 	public int size() {
-		return 0; // FIXME
+		return this.size;
 	}
 
 
@@ -29,7 +31,11 @@ public class MyArrayList<T> {
 	 * @param element The element to add.
 	 */
 	public void add(T element) {
-		// FIXME
+		if (size == arrayData.length){
+			resize();
+		}
+		arrayData[size] = element;
+		size++;
 	}
 
 	/**
@@ -41,7 +47,7 @@ public class MyArrayList<T> {
 	 * @return The element at the specified index.
 	 */
 	public T get(int index) {
-		return null; // FIXME
+		return (T) arrayData[index];
 	}
 
 	/**
@@ -52,14 +58,22 @@ public class MyArrayList<T> {
 	 * @param index The index to remove.
 	 */
 	public void remove(int index) {
-		// FIXME
+		for(int i=index; i<this.size-1; i++){
+			this.arrayData[i]=this.arrayData[i+1];
+		}
+		this.size--;
 	}
 
 	/**
 	 * Double the size of the internal array.
 	 */
 	private void resize() {
-		//FIXME
+		Object[] temp = arrayData;
+		Object[] rev = new Object[arrayData.length*2];
+		for (int i = 0; i<arrayData.length;i++){
+			rev[i] = arrayData[i];
+		}
+		arrayData = rev;
 	}
 
 	/**
