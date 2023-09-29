@@ -1,3 +1,5 @@
+Feedback: You have not done review questions, challenge questions 2 and 3. You may resubmit with a late pass by 10/05.
+
 # 9/11 Worksheet: ArrayLists and LinkedLists
 ## Initial due date: *09/18 @11:59pm*
 
